@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import sys
 from calculator_1 import add, sub, mul, div
+
+
 def operation_handling(a, operator, b):
     if operator == '+':
         result = add(a, b)
@@ -15,6 +17,7 @@ def operation_handling(a, operator, b):
         sys.exit(1)
 
     print(f"{a} {operator} {b} = {result}")
+
 
 if __name__ == "__main__":
     if len(sys.argv[1:]) != 3:
