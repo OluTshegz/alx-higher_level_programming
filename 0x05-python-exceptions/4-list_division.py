@@ -6,7 +6,7 @@ def list_division(my_list_1, my_list_2, list_length):
             my_list_2 (list): The second list.
             list_length (int): The number of elements to divide.
         Returns:
-            a new list (length = list_length) with all divisions        
+            a new list (length = list_length) with all divisions
     """
     new_list = []
     for i in range(list_length):
