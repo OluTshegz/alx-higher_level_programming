@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""class Square that defines a square by: (based on 0-square.py)"""
+"""class Square that defines a square by: (based on 6-square.py)"""
 
 
 class Square:
@@ -9,8 +9,8 @@ class Square:
         """ Initializing a new square.
 
         Args:
-            size(int): size of the square
-            position(int, int): position of the square
+            size (int): size of the square
+            position (int, int): position of the square
         """
         self.size = size
         self.position = position
