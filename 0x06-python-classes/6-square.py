@@ -30,7 +30,7 @@ class Square:
     def position(self):
         """gets the position of the square"""
         return self.__position
-    
+
     @position.setter
     def position(self, value):
         if (type(value) is not tuple or
@@ -48,10 +48,10 @@ class Square:
         if self.__size == 0:
             print()
             return
-        
+
         for x in range(self.__position[1]):
-                print()
-                
+            print()
+
         for x in range(self.__size):
             for y in range(self.__position[0]):
                 print(" ", end='')
