@@ -10,7 +10,7 @@ class Square:
 
         Args:
             size(int): size of the square
-            position(int): position of the square
+            position(int, int): position of the square
         """
         self.size = size
         self.position = position
