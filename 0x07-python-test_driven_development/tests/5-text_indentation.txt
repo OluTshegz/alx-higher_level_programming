@@ -63,6 +63,23 @@ TypeError: text must be a string
 >>> text_indentation("Olusegun" + " " + "Tayo")
 Olusegun Tayo
 
+>>> text_indentation("Holberton School")
+Holberton School
+
+>>> text_indentation("Holberton.School")
+Holberton.
+<BLANKLINE>
+School
+
+>>> text_indentation("Holberton. School? How are you: John")
+Holberton.
+<BLANKLINE>
+School?
+<BLANKLINE>
+How are you:
+<BLANKLINE>
+John
+
 >>> text_indentation("Hello. World")
 Hello.
 <BLANKLINE>
