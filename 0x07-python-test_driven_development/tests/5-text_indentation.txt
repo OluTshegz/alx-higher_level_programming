@@ -1,0 +1,220 @@
+# Test cases for 'text_indentation' function in "5-text_indentation" file module
+
+Test cases for/on How to Use 5-text_indentation module
+This modules defines a function ``text_indentation(text)``
+
+Usage
+=====
+``text_indentation(...)`` takes an argument ``text`` which must be a string
+else raise TypeError with specified message if any position of string
+equals `:` or `.` or `?`, print text and two new lines else print text.
+
+Make Sure Documentation Exists:
+Checking for module docstring:
+    >>> module_documentation = __import__("5-text_indentation").__doc__
+    >>> len(module_documentation) > 1
+    True
+
+Checking for function docstring:
+    >>> function_documentation = __import__("5-text_indentation").text_indentation.__doc__
+    >>> len(function_documentation) > 1
+    True
+
+Importing function from the module:
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+==== Test for expected Behavior ====
+
+>>> text_indentation("My name is Olusegun.")
+My name is Olusegun.
+<BLANKLINE>
+
+>>> text_indentation("My name is Olusegun? oh! now i know.")
+My name is Olusegun?
+<BLANKLINE>
+oh! now i know.
+<BLANKLINE>
+
+>>> t = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+>>> text_indentation(t)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+
+>>> text_indentation("   a lot more space:   ya you want more?   ok enough    i said enough.")
+a lot more space:
+<BLANKLINE>
+ya you want more?
+<BLANKLINE>
+ok enough    i said enough.
+<BLANKLINE>
+
+>>> text_indentation(12)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(1 + 1)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation("Olusegun" + " " + "Tayo")
+Olusegun Tayo
+
+>>> text_indentation("Hello. World")
+Hello.
+<BLANKLINE>
+World
+>>> text_indentation("Hello.World:Now?")
+Hello.
+<BLANKLINE>
+World:
+<BLANKLINE>
+Now?
+<BLANKLINE>
+
+# some number of '?'s only
+>>> text_indentation("????")
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+
+==== Handle edge cases ====
+
+>>> text_indentation(12)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# just the characters
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+
+# Long texts
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
+... Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
+... Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
+... rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
+... stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
+... cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
+... beatiorem! Iam ruinas videres""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem.
+<BLANKLINE>
+Fortasse id optimum, sed ubi illud:
+<BLANKLINE>
+Plus semper voluptatis?
+<BLANKLINE>
+Teneo, inquit, finem illi videri nihil dolere.
+<BLANKLINE>
+Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
+<BLANKLINE>
+Si id dicis, vicimus.
+<BLANKLINE>
+Inde sermone vario sex illa a Dipylo stadia confecimus.
+<BLANKLINE>
+Sin aliud quid voles, postea.
+<BLANKLINE>
+Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+<BLANKLINE>
+Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+
+# missing arguments
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+# test for empty string
+>>> text_indentation("")
+>>> text_indentation("""Line number 1
+... <BLANKLINE>
+... This is another line
+... Once again""")
+Line number 1
+<BLANKLINE>
+This is another line
+Once again
+
+
+==== More tests ====
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem.
+<BLANKLINE>
+Fortasse id optimum, sed ubi illud:
+<BLANKLINE>
+Plus semper voluptatis?
+<BLANKLINE>
+Teneo, inquit, finem illi videri nihil dolere.
+<BLANKLINE>
+Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
+<BLANKLINE>
+Si id dicis, vicimus.
+<BLANKLINE>
+Inde sermone vario sex illa a Dipylo stadia confecimus.
+<BLANKLINE>
+Sin aliud quid voles, postea.
+<BLANKLINE>
+Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+<BLANKLINE>
+Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+>>> text_indentation(15)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+>>> text_indentation("")
+>>> text_indentation("""Line number 1
+... <BLANKLINE>
+... This is another line
+... Once again""")
+Line number 1
+<BLANKLINE>
+This is another line
+Once again
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'

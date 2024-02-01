@@ -1,0 +1,61 @@
+# Test cases for 'lazy_matrix_mul' function in "101-lazy_matrix_mul" file module
+
+Test cases for/on How to Use 101-lazy_matrix_mul.py module
+This module defines a matrix multiplication function ``lazy_matrix_mul(m_a, m_b)``.
+
+Usage
+=====
+``lazy_matrix_mul(...)`` returns a new matrix representing the multiplication
+of ``m_a`` by ``m_b``.
+
+Make Sure Documentation Exists:
+Checking for module docstring:
+    >>> module_documentation = __import__("101-lazy_matrix_mul").__doc__
+    >>> len(module_documentation) > 1
+    True
+
+Checking for function docstring:
+    >>> function_documentation = __import__("101-lazy_matrix_mul").lazy_matrix_mul.__doc__
+    >>> len(function_documentation) > 1
+    True
+
+# Import Numpy
+>>> import numpy as np
+
+Importing function from the module:
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+# Test 1 empty matrix
+>>> lazy_matrix_mul([[]], [[]])
+Traceback (most recent call last):
+...
+ValueError: shapes (1,0) and (1,0) not aligned: 0 (dim 1) != 1 (dim 0)
+
+# Test with no input argument
+>>> lazy_matrix_mul()
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+# Test with only one argument
+>>> lazy_matrix_mul([[2, 4], [3, 5]])
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+# Test with string in one of the values
+>>> print(lazy_matrix_mul([[1, 2], [3, 'c']], [[5, 6], [7, 8]]))
+Traceback (most recent call last):
+...
+ValueError: data type must provide an itemsize
+
+# Test with list of list of numbers
+>>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 8]]))
+[[19 22]
+ [43 50]]
+
+# List of different size/length
+>>> print(lazy_matrix_mul([[1, 2, 3], [4, 5], [6, 7, 8, 9], [10]]))
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
