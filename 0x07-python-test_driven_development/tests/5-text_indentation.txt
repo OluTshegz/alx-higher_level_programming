@@ -65,12 +65,10 @@ Olusegun Tayo
 
 >>> text_indentation("Holberton School")
 Holberton School
-
 >>> text_indentation("Holberton.School")
 Holberton.
 <BLANKLINE>
 School
-
 >>> text_indentation("Holberton. School? How are you: John")
 Holberton.
 <BLANKLINE>
@@ -79,7 +77,6 @@ School?
 How are you:
 <BLANKLINE>
 John
-
 >>> text_indentation("Hello. World")
 Hello.
 <BLANKLINE>
