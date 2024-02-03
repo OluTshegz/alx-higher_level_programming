@@ -63,13 +63,13 @@ TypeError: text must be a string
 >>> text_indentation("Olusegun" + " " + "Tayo")
 Olusegun Tayo
 
->>> print(text_indentation("Holberton School", end=''))
+>>> text_indentation("Holberton School")
 Holberton School
->>> print(text_indentation("Holberton.School", end=''))
+>>> text_indentation("Holberton.School")
 Holberton.
 <BLANKLINE>
 School
->>> print(text_indentation("Holberton. School? How are you: John", end=''))
+>>> text_indentation("Holberton. School? How are you: John")
 Holberton.
 <BLANKLINE>
 School?
