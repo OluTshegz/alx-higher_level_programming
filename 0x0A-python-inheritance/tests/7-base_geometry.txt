@@ -27,10 +27,6 @@ True
 Importing class from the module:
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-create an instance of BaseGeometry and call integer_validator with positive int value
->>> bg = BaseGeometry()
->>> bg.integer_validator("width", 16)
-
 create an instance of BaseGeometry and call area method
 Checking for area failure:
 >>> bg = BaseGeometry()
@@ -44,21 +40,30 @@ Checking too many arguments for area:
 >>> bg.area(1)
 Traceback (most recent call last):
 ...
-TypeError: BaseGeometry.area() takes 1 positional argument but 2 were given
+Exception: area() is not implemented
 
 Passing one argument to area method
 >>> bg = BaseGeometry()
 >>> bg.area(5)
 Traceback (most recent call last):
 ...
-TypeError: BaseGeometry.area() takes 1 positional argument but 2 were given
+Exception: area() is not implemented
 
 Passing two arguments to area method
 >>> bg = BaseGeometry()
 >>> bg.area(5, 5)
 Traceback (most recent call last):
 ...
-TypeError: BaseGeometry.area() takes 1 positional argument but 3 were given
+Exception: area() is not implemented
+
+For the Error messsage of BaseGeometry.area(), it is handled by an Exception in ./7-base_geometry.py module
+Traceback (most recent call last):
+...
+TypeError: BaseGeometry.area() takes 1 positional argument but {int_value argument} were given
+
+create an instance of BaseGeometry and call integer_validator with positive int value
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", 16)
 
 >>> bg.integer_validator("NaN", float('nan'))
 Traceback (most recent call last):
