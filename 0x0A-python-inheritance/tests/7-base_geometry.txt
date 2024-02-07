@@ -61,6 +61,7 @@ create an instance of BaseGeometry and call integer_validator with positive int 
 >>> bg = BaseGeometry()
 >>> bg.integer_validator("width", 16)
 
+>>> bg = BaseGeometry()
 >>> bg.integer_validator("NaN", float('nan'))
 Traceback (most recent call last):
 ...
