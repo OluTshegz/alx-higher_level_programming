@@ -43,6 +43,13 @@ Traceback (most recent call last):
 ...
 TypeError: BaseGeometry.area() takes 1 positional argument but 2 were given
 
+create an instance of BaseGeometry and call area with arg
+>>> bg = BaseGeometry()
+>>> bg.area(10)
+Traceback (most recent call last):
+...
+TypeError: BaseGeometry.area() takes 1 positional argument but 2 were given
+
 Passing one argument to area method
 >>> bg = BaseGeometry()
 >>> bg.area(5)
@@ -111,13 +118,6 @@ create an instance of BaseGeometry and call integer_validator with 3 args
 Traceback (most recent call last):
 ...
 TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 4 were given
-
-create an instance of BaseGeometry and call area with arg
->>> bg = BaseGeometry()
->>> bg.area(10)
-Traceback (most recent call last):
-...
-TypeError: BaseGeometry.area() takes 1 positional argument but 2 were given
 
 >>> bg = BaseGeometry()
 >>> bg.integer_validator("frozenset", frozenset(["hello", "world"]))
