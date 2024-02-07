@@ -56,11 +56,6 @@ Traceback (most recent call last):
 ...
 Exception: area() is not implemented
 
-For the Error messsage of BaseGeometry.area(), it is handled by an Exception in ./7-base_geometry.py module
-Traceback (most recent call last):
-...
-TypeError: BaseGeometry.area() takes 1 positional argument but {int_value argument} were given
-
 create an instance of BaseGeometry and call integer_validator with positive int value
 >>> bg = BaseGeometry()
 >>> bg.integer_validator("width", 16)
