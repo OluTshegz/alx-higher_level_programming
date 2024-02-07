@@ -27,6 +27,9 @@ True
 Importing class from the module:
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
+create an instance of BaseGeometry and call integer_validator with positive int value
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", 16)
 
 create an instance of BaseGeometry and call area method
 Checking for area failure:
@@ -56,10 +59,6 @@ Passing two arguments to area method
 Traceback (most recent call last):
 ...
 TypeError: BaseGeometry.area() takes 1 positional argument but 3 were given
-
-create an instance of BaseGeometry and call integer_validator with positive int value
->>> bg = BaseGeometry()
->>> bg.integer_validator("width", 16)
 
 >>> bg.integer_validator("NaN", float('nan'))
 Traceback (most recent call last):
