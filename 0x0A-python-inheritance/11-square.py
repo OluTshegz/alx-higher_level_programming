@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Defines a `Square` that inherits from super/Parent class Rectangle.
 (based on 10-square.py)."""
-Rectangle = __import__('9-rectangle').Rectangle
+Rectangle = __import__('8-rectangle').Rectangle
 
 
 class Square(Rectangle):
@@ -16,9 +16,9 @@ class Square(Rectangle):
         self.__size = size
 
     def area(self):
-        """"returns the area of the square"""
+        """"returns the area of the Square"""
         return self.__size ** 2
 
     def __str__(self):
-        """informal string reepresentation of the square"""
+        """returns the informal string representation of the Square"""
         return "[Square] {:d}/{:d}".format(self.__size, self.__size)
