@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""""""
+"""This module contains Base class and some imported modules"""
 import json
 import os
 import csv
@@ -7,11 +7,14 @@ import turtle
 
 
 class Base:
-    """"""
+    """The class Base for its instances
+    Attributes:
+        __nb_objects (int): Is the number of objects created from this class
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """"""
+        """the initializing method"""
         if id is not None:
             self.id = id
         else:
@@ -20,6 +23,10 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """Returns the JSON string representation of list of dictionaries
+        Args:
+            list_dictionaries (list of dicts): The list of dictionaries
+            to return it's own JSON string representation"""
         if (list_dictionaries is None or list_dictionaries == []
                 or len(list_dictionaries) == 0):
             return "[]"
@@ -36,6 +43,10 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
+        """Writes the JSON string representation of list_objs to a file
+        Args:
+            list_objs (list): A list of instances who inherits of Base
+            for example: list of Rectangle or list of Square instances"""
         if list_objs is None or len(list_objs) == 0:
             with open(f"{cls.__name__}.json", "w") as json_file:
                 json_file.write("[]")
@@ -54,6 +65,10 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
+        """Returns the list of the JSON string representation json_string
+        Args:
+            json_string (str): s a string representing a list of dictionaries
+        """
         if json_string is None or json_string == [] or json_string == '':
             return "[]"
         else:
@@ -65,6 +80,10 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
+        """Returns an instance with all attributes already set
+        Args:
+            dictionary (dict): A dictionary that conttains all values of
+            the attributes of the new instance to create"""
         if dictionary and dictionary != {}:
             if cls.__name__ == 'Rectangle':
                 dummy = cls(1, 1)
@@ -76,6 +95,8 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
+        """Returns a list of instances from a file
+        The filename must be: <Class name>.json - example: Rectangle.json"""
         instances = []
         try:
             if os.path.exists(f"{cls.__name__}.json"):
@@ -92,6 +113,15 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
+        """
+        Writes a list_objs to a CSV file
+        Format of the CSV:
+            Rectangle: <id>,<width>,<height>,<x>,<y>
+            Square: <id>,<size>,<x>,<y>
+        Args:
+            list_objs (list): A list of instances who inherits of Base
+            for example: list of Rectangle or list of Square instances
+        """
         with open(f"{cls.__name__}.csv", "w") as csv_file:
             if list_objs is None or len(list_objs) == 0 or list_objs == []:
                 csv.writer(csv_file).writerow([])
@@ -110,6 +140,10 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
+        """
+        Returns a list of instances from a csv file
+        The filename must be: <Class name>.csv - example: Rectangle.csv
+        """
         instances = []
         try:
             file_name = "{}.csv".format(cls.__name__)
@@ -137,6 +171,12 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
+        """
+        Opens a window and draws all the Rectangles and Squares
+        Args:
+            list_rectangles (list): Is the list of rectangles to be drawn
+            list_squares (list): Is the list of squares to be drawn
+        """
         draw_turtle = turtle.Turtle()
         draw_turtle.screen.bgcolor("green")
         draw_turtle.pensize(5)
