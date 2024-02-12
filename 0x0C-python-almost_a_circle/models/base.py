@@ -67,14 +67,11 @@ class Base:
     def from_json_string(json_string):
         """Returns the list of the JSON string representation json_string
         Args:
-            json_string (str): s a string representing a list of dictionaries
+            json_string (str): is a string representing a list of dictionaries
         """
-        if json_string is None or json_string == [] or json_string == '':
-            return "[]"
+        if json_string is None or json_string == '':
+            return []
         else:
-            json_string_list_dicts = []
-            if type(json_string) != str:
-                raise TypeError("json_string must be a string")
             json_string_list_dicts = json.loads(json_string)
             return json_string_list_dicts
 

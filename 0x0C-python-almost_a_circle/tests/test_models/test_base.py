@@ -133,8 +133,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(list_output), list)
         self.assertEqual(list_input, list_output)
 
-        self.assertEqual(Rectangle.from_json_string(""), '[]')
-        self.assertEqual(Rectangle.from_json_string(None), '[]')
+        self.assertEqual(Rectangle.from_json_string(""), [])
+        self.assertEqual(Rectangle.from_json_string(None), [])
         self.assertEqual(Rectangle.from_json_string("[{}, {}]"), [{}, {}])
         self.assertEqual(Rectangle.from_json_string("[]"), [])
         self.assertEqual(
