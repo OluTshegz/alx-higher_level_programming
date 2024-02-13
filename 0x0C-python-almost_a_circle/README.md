@@ -1,6 +1,4 @@
-This is a README.md file for this repository
-
-In This porject:
+In This project:
 All your test files should be inside a folder tests
 You have to use the unittest module
 All your test files should be python files (extension: .py)
@@ -10,18 +8,16 @@ All your tests should be executed by using this command: python3 -m unittest dis
 You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base.py
 We strongly encourage you to work together on test cases so that you don’t miss any edge case
 
-
-
 Directory tests: Where all the test files for the project are located
-File - models/base.py, and models/__init__.py: Write the first class Base:
+File - models/base.py, and models/init.py: Write the first class Base:
 
-Create a folder named models with an empty file __init__.py inside - with this file, the folder (models) will become a Python package
+Create a folder named models with an empty file init.py inside - with this file, the folder (models) will become a Python package
 
 Create a file named models/base.py:
 
 Class Base:
 private class attribute __nb_objects = 0
-class constructor: def __init__(self, id=None)::
+class constructor: def init(self, id=None)::
 if id is not None, assign the public instance attribute id with this argument value - you can assume id is an integer and you don’t need to test the type of it
 otherwise, increment __nb_objects and assign the new value to the public instance attribute id
 This class will be the “base” of all other classes in this project. The goal of it is to manage id attribute in all your future classes and to avoid duplicating the same code (by extension, same bugs)
@@ -36,8 +32,8 @@ __width -> width
 __height -> height
 __x -> x
 __y -> y
-Class constructor: def __init__(self, width, height, x=0, y=0, id=None):
-Call the super class with id - this super call with use the logic of the __init__ of the Base class
+Class constructor: def init(self, width, height, x=0, y=0, id=None):
+Call the super class with id - this super call with use the logic of the init of the Base class
 Assign each argument width, height, x and y to the right attribute
 Why private attributes with getter/setter? Why not directly public attribute?
 
@@ -53,36 +49,31 @@ __width -> width
 __height -> height
 __x -> x
 __y -> y
-Class constructor: def __init__(self, width, height, x=0, y=0, id=None):
-Call the super class with id - this super call with use the logic of the __init__ of the Base class
+Class constructor: def init(self, width, height, x=0, y=0, id=None):
+Call the super class with id - this super call with use the logic of the init of the Base class
 Assign each argument width, height, x and y to the right attribute
 Why private attributes with getter/setter? Why not directly public attribute?
 
 Because we want to protect attributes of our class. With a setter, you are able to validate what a developer is trying to assign to a variable. So after, in your class you can “trust” these attributes.
 
-
-### Task 3
+Task 3
 File - models/rectangle.py: Update the class Rectangle by adding validation of all setter methods and instantiation (id excluded):
 
-If the input is not an integer, raise the TypeError exception with the message: <name of the attribute> must be an integer. Example: width must be an integer
-If width or height is under or equals 0, raise the ValueError exception with the message: <name of the attribute> must be > 0. Example: width must be > 0
-If x or y is under 0, raise the ValueError exception with the message: <name of the attribute> must be >= 0. Example: x must be >= 0
+If the input is not an integer, raise the TypeError exception with the message: must be an integer. Example: width must be an integer
+If width or height is under or equals 0, raise the ValueError exception with the message: must be > 0. Example: width must be > 0
+If x or y is under 0, raise the ValueError exception with the message: must be >= 0. Example: x must be >= 0
 
 Task 4
 File - models/rectangle.py: Update the class Rectangle by adding the public method def area(self): that returns the area value of the Rectangle instance.
 
-
 Task 5
 File - models/rectangle.py: Update the class Rectangle by adding the public method def display(self): that prints in stdout the Rectangle instance with the character # - you don’t need to handle x and y here.
 
-
 Task 6
-File - : Update the class Rectangle by overriding the __str__ method so that it returns [Rectangle] (<id>) <x>/<y> - <width>/<height>
-
+File - : Update the class Rectangle by overriding the str method so that it returns [Rectangle] () / - /
 
 Task 7
 File - models/rectangle.py: Update the class Rectangle by improving the public method def display(self): to print in stdout the Rectangle instance with the character # by taking care of x and y
-
 
 Task 8
 File - models/rectangle.py: Update the class Rectangle by adding the public method def update(self, *args): that assigns an argument to each attribute:
@@ -94,7 +85,6 @@ File - models/rectangle.py: Update the class Rectangle by adding the public meth
 5th argument should be the y attribute
 This type of argument is called a “no-keyword argument” - Argument order is super important.
 
-
 Task 9
 File - models/rectangle.py: Update the class Rectangle by updating the public method def update(self, *args): by changing the prototype to update(self, *args, **kwargs) that assigns a key/value argument to attributes:
 
@@ -104,19 +94,17 @@ As Python doesn’t have pointers, **kwargs is not literally a double pointer �
 Each key in this dictionary represents an attribute to the instance
 This type of argument is called a “key-worded argument”. Argument order is not important.
 
-
 Task 10
 File - models/square.py: Write the class Square that inherits from Rectangle:
 
 In the file models/square.py
 Class Square inherits from Rectangle
-Class constructor: def __init__(self, size, x=0, y=0, id=None)::
-Call the super class with id, x, y, width and height - this super call will use the logic of the __init__ of the Rectangle class. The width and height must be assigned to the value of size
+Class constructor: def init(self, size, x=0, y=0, id=None)::
+Call the super class with id, x, y, width and height - this super call will use the logic of the init of the Rectangle class. The width and height must be assigned to the value of size
 You must not create new attributes for this class, use all attributes of Rectangle - As reminder: a Square is a Rectangle with the same width and height
 All width, height, x and y validation must inherit from Rectangle - same behavior in case of wrong data
-The overloading __str__ method should return [Square] (<id>) <x>/<y> - <size> - in our case, width or height
+The overloading str method should return [Square] () / - - in our case, width or height
 As you know, a Square is a special Rectangle, so it makes sense this class Square inherits from Rectangle. Now you have a Square class who has the same attributes and same methods.
-
 
 Task 11
 File - models/square.py: Update the class Square by adding the public getter and setter size
@@ -163,7 +151,7 @@ File - models/base.py: JSON is one of the standard formats for sharing data repr
 Update the class Base by adding the static method def to_json_string(list_dictionaries): that returns the JSON string representation of list_dictionaries:
 
 list_dictionaries is a list of dictionaries
-If list_dictionaries is None or empty, return the string: "[]"
+If list_dictionaries is None or empty, return the string: “[]”
 Otherwise, return the JSON string representation of list_dictionaries
 
 Task 16
@@ -171,7 +159,7 @@ File - models/base.py: Update the class Base by adding the class method def save
 
 list_objs is a list of instances who inherits of Base - example: list of Rectangle or list of Square instances
 If list_objs is None, save an empty list
-The filename must be: <Class name>.json - example: Rectangle.json
+The filename must be: .json - example: Rectangle.json
 You must use the static method to_json_string (created before)
 You must overwrite the file if it already exists
 
@@ -196,7 +184,7 @@ You are not allowed to use eval
 Task 19
 File - models/base.py: Update the class Base by adding the class method def load_from_file(cls): that returns a list of instances:
 
-The filename must be: <Class name>.json - example: Rectangle.json
+The filename must be: .json - example: Rectangle.json
 If the file doesn’t exist, return an empty list
 Otherwise, return a list of instances - the type of these instances depends on cls (current class using this method)
 You must use the from_json_string and create methods (implemented previously)
@@ -204,68 +192,63 @@ You must use the from_json_string and create methods (implemented previously)
 Task 20
 File - models/base.py: Update the class Base by adding the class methods def save_to_file_csv(cls, list_objs): and def load_from_file_csv(cls): that serializes and deserializes in CSV:
 
-The filename must be: <Class name>.csv - example: Rectangle.csv
+The filename must be: .csv - example: Rectangle.csv
 Has the same behavior as the JSON serialization/deserialization
 Format of the CSV:
-Rectangle: <id>,<width>,<height>,<x>,<y>
-Square: <id>,<size>,<x>,<y>
+Rectangle: ,,,,
+Square: ,,,
 guillaume@ubuntu:~/$ cat 100-main.py
 #!/usr/bin/python3
-""" 100-main """
+“”" 100-main “”"
 from models.rectangle import Rectangle
 from models.square import Square
 
-if __name__ == "__main__":
+if name == “main”:
 
-    r1 = Rectangle(10, 7, 2, 8)
-    r2 = Rectangle(2, 4)
-    list_rectangles_input = [r1, r2]
+r1 = Rectangle(10, 7, 2, 8)
+r2 = Rectangle(2, 4)
+list_rectangles_input = [r1, r2]
 
-    Rectangle.save_to_file_csv(list_rectangles_input)
+Rectangle.save_to_file_csv(list_rectangles_input)
 
-    list_rectangles_output = Rectangle.load_from_file_csv()
+list_rectangles_output = Rectangle.load_from_file_csv()
 
-    for rect in list_rectangles_input:
-        print("[{}] {}".format(id(rect), rect))
+for rect in list_rectangles_input:
+    print("[{}] {}".format(id(rect), rect))
 
-    print("---")
+print("---")
 
-    for rect in list_rectangles_output:
-        print("[{}] {}".format(id(rect), rect))
+for rect in list_rectangles_output:
+    print("[{}] {}".format(id(rect), rect))
 
-    print("---")
-    print("---")
+print("---")
+print("---")
 
-    s1 = Square(5)
-    s2 = Square(7, 9, 1)
-    list_squares_input = [s1, s2]
+s1 = Square(5)
+s2 = Square(7, 9, 1)
+list_squares_input = [s1, s2]
 
-    Square.save_to_file_csv(list_squares_input)
+Square.save_to_file_csv(list_squares_input)
 
-    list_squares_output = Square.load_from_file_csv()
+list_squares_output = Square.load_from_file_csv()
 
-    for square in list_squares_input:
-        print("[{}] {}".format(id(square), square))
+for square in list_squares_input:
+    print("[{}] {}".format(id(square), square))
 
-    print("---")
+print("---")
 
-    for square in list_squares_output:
-        print("[{}] {}".format(id(square), square))
-
+for square in list_squares_output:
+    print("[{}] {}".format(id(square), square))
 guillaume@ubuntu:~/$ ./100-main.py
 [140268695797600] [Rectangle] (1) 2/8 - 10/7
 [140268695797656] [Rectangle] (2) 0/0 - 2/4
----
 [140268695529008] [Rectangle] (1) 2/8 - 10/7
 [140268695528952] [Rectangle] (2) 0/0 - 2/4
----
----
 [140268695822520] [Square] (5) 0/0 - 5
 [140268695826328] [Square] (6) 9/1 - 7
----
 [140268695529232] [Square] (5) 0/0 - 5
 [140268695529176] [Square] (6) 9/1 - 7
-guillaume@ubuntu:~/$ 
+guillaume@ubuntu:~/$
 
 Task 21
 File - models/base.py: Update the class Base by adding the static method def draw(list_rectangles, list_squares): that opens a window and draws all the Rectangles and Squares:
@@ -276,20 +259,19 @@ To make the GUI available outside your vagrant machine, add this line in your Va
 No constraints for color, shape etc… be creative!
 guillaume@ubuntu:~/$ cat 101-main.py
 #!/usr/bin/python3
-""" 101-main """
+“”" 101-main “”"
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
-if __name__ == "__main__":
+if name == “main”:
 
-    list_rectangles = [Rectangle(100, 40), Rectangle(90, 110, 30, 10), Rectangle(20, 25, 110, 80)]
-    list_squares = [Square(35), Square(15, 70, 50), Square(80, 30, 70)]
+list_rectangles = [Rectangle(100, 40), Rectangle(90, 110, 30, 10), Rectangle(20, 25, 110, 80)]
+list_squares = [Square(35), Square(15, 70, 50), Square(80, 30, 70)]
 
-    Base.draw(list_rectangles, list_squares)
-
+Base.draw(list_rectangles, list_squares)
 guillaume@ubuntu:~/$ ./101-main.py
-....
+…
 
 Uncommented line in /etc/ssh/ssh_config that said # ForwardX11 no and change no to yes.
 Then added line config.ssh.forward_agent = true to my Vagrantfile in addition to config.ssh.forward_x11 = true.
