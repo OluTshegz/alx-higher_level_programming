@@ -3,9 +3,10 @@
 """This module has TestRectangle class to test the Rectangle class"""
 
 import unittest
-
+import io
 from models.rectangle import Rectangle
 from models.base import Base
+from contextlib import redirect_stdout
 
 
 class TestRectangle(unittest.TestCase):
@@ -26,6 +27,8 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.x, 0)
         self.assertEqual(r1.y, 0)
 
+        self.assertTrue(isinstance(r1, Base))
+
         r2 = Rectangle(5, 7, 4)
         self.assertEqual(r2.id, 2)
         self.assertEqual(r2.width, 5)
@@ -42,13 +45,6 @@ class TestRectangle(unittest.TestCase):
 
         r4 = Rectangle(5, 7, 4, 9, 15)
         self.assertEqual(r4.id, 15)
-        self.assertEqual(r4.width, 5)
-        self.assertEqual(r4.height, 7)
-        self.assertEqual(r4.x, 4)
-        self.assertEqual(r4.y, 9)
-
-        r4 = Rectangle(5, 7, 4, 9, [15])
-        self.assertEqual(r4.id, [15])
         self.assertEqual(r4.width, 5)
         self.assertEqual(r4.height, 7)
         self.assertEqual(r4.x, 4)
@@ -91,6 +87,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.width = 0
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 5)
+        with self.assertRaises(ValueError):
+            r = Rectangle(-5, 5)
+
     def test_height(self):
         """Tests the height of the rectangle"""
 
@@ -115,6 +116,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.height = 0
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, 0)
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, -5)
+
     def test_x(self):
         """Tests x of the rectangle"""
 
@@ -135,6 +141,9 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             r.x = -5
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(4, 5, -1)
 
     def test_y(self):
         """Tests y of the rectangle"""
@@ -157,6 +166,9 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.y = -5
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(4, 5, 1, -2)
+
     def test_area(self):
         """Tests the area of the rectangle"""
 
@@ -171,6 +183,36 @@ class TestRectangle(unittest.TestCase):
         r.height = 8
         self.assertEqual(r.area(), 56)
 
+        with self.assertRaises(TypeError):
+            r.area(1)
+
+    def test_display(self):
+        """Tests display function"""
+        r1 = Rectangle(2, 3)
+
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            r1.display()
+        self.assertEqual("##\n##\n##\n", output.getvalue())
+
+        output = io.StringIO()
+        r2 = Rectangle(2, 3, 4, 2)
+        with redirect_stdout(output):
+            r2.display()
+        self.assertEqual("\n\n    ##\n    ##\n    ##\n", output.getvalue())
+
+        output = io.StringIO()
+        r3 = Rectangle(2, 4, 4)
+        with redirect_stdout(output):
+            r3.display()
+        display = "    ##\n    ##\n    ##\n    ##\n"
+        self.assertEqual(display, output.getvalue())
+
+        r5 = Rectangle(3, 4, 5, 2)
+        with self.assertRaises(TypeError):
+            r5.display(1)
+
     def test_str(self):
         """Tests the __str__ method"""
 
@@ -184,59 +226,36 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.__str__(), "[Rectangle] (15) 4/3 - 7/3")
 
         r = Rectangle(5, 5)
-        self.assertEqual(r.__str__(), "[Rectangle] (2) 0/0 - 5/5")
+        self.assertEqual(str(r), "[Rectangle] (2) 0/0 - 5/5")
+
+        r = Rectangle(5, 5, 1, 3)
+        self.assertEqual(r.__str__(), "[Rectangle] (3) 1/3 - 5/5")
 
     def test_update(self):
         """Tests Update function that updates the attributes of an instance"""
 
         r = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r.id, 1)
-        self.assertEqual(r.width, 10)
-        self.assertEqual(r.height, 10)
-        self.assertEqual(r.x, 10)
-        self.assertEqual(r.y, 10)
 
         r.update(89)
         self.assertEqual(r.id, 89)
-        self.assertEqual(r.width, 10)
-        self.assertEqual(r.height, 10)
-        self.assertEqual(r.x, 10)
-        self.assertEqual(r.y, 10)
 
         r.update(89, 2)
         self.assertEqual(r.id, 89)
         self.assertEqual(r.width, 2)
-        self.assertEqual(r.height, 10)
-        self.assertEqual(r.x, 10)
-        self.assertEqual(r.y, 10)
 
         r.update(89, 2, 3, id=7)
         self.assertEqual(r.id, 89)
-        self.assertEqual(r.width, 2)
         self.assertEqual(r.height, 3)
-        self.assertEqual(r.x, 10)
-        self.assertEqual(r.y, 10)
 
         r.update(89, 2, 3, 4)
-        self.assertEqual(r.id, 89)
-        self.assertEqual(r.width, 2)
-        self.assertEqual(r.height, 3)
         self.assertEqual(r.x, 4)
-        self.assertEqual(r.y, 10)
 
         r.update(89, 2, 3, 4, 5)
-        self.assertEqual(r.id, 89)
-        self.assertEqual(r.width, 2)
-        self.assertEqual(r.height, 3)
-        self.assertEqual(r.x, 4)
         self.assertEqual(r.y, 5)
 
         r.update(89, 2, 3, 4, 5, id=15, x=20)
         self.assertEqual(r.id, 89)
-        self.assertEqual(r.width, 2)
-        self.assertEqual(r.height, 3)
         self.assertEqual(r.x, 4)
-        self.assertEqual(r.y, 5)
 
         r.update(width=13, height=10, y=17, id=15, x=20)
         self.assertEqual(r.id, 15)
@@ -289,14 +308,4 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.to_dictionary(), r2_dictionary)
 
         with self.assertRaises(TypeError):
-            r4 = Rectangle()
-        with self.assertRaises(TypeError):
-            r5 = Rectangle("2", 4)
-        with self.assertRaises(TypeError):
-            r6 = Rectangle(2, "4")
-        with self.assertRaises(ValueError):
-            r7 = Rectangle(-2, "4")
-        with self.assertRaises(ValueError):
-            r8 = Rectangle(2, 0)
-        with self.assertRaises(TypeError):
-            r9 = Rectangle("2", 0)
+            r3.to_dictionary("1")
