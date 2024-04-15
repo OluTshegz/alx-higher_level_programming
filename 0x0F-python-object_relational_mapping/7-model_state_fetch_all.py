@@ -8,8 +8,8 @@ Usage: ./7-model_state_fetch_all.py <mysql username>
 
 import sys
 from model_state import Base, State
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import (sessionmaker)
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     """

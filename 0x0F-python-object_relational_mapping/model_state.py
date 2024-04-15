@@ -4,8 +4,8 @@ This script defines a model: `State` class definition and
 an inherited `Base` class to work with `MySQLAlchemy` ORM.
 """
 
-from sqlalchemy import (Column), (Integer), (String)
-from sqlalchemy.ext.declarative import (declarative_base)
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 

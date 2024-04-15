@@ -8,8 +8,8 @@ Usage: ./9-model_state_filter_a.py <mysql username>
 
 import sys
 from model_state import State, Base
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import (sessionmaker)
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     """

@@ -8,8 +8,8 @@ Usage: ./8-model_state_fetch_first.py <mysql username>
 
 import sys
 from model_state import State, Base
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import (sessionmaker)
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     """
