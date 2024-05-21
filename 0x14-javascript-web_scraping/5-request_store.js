@@ -14,7 +14,6 @@ const filePath = process.argv[3];
 request(url, (error, response, body) => {
   if (error) {
     console.error(`Error: ${error}`);
-    return;
   }
 
   fs.writeFile(filePath, body, { encoding: 'utf-8' }, (err) => {
