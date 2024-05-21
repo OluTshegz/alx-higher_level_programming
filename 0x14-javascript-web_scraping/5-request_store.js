@@ -22,6 +22,6 @@ request(url, (error, response, body) => {
       console.error(`Error writing to file: ${err}`);
     }
   });
-
-  console.log(`The content of ${url} is saved to ${filePath}`);
 });
+
+console.log(`The content of ${url} is saved to ${filePath}`);
