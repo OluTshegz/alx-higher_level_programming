@@ -39,7 +39,7 @@ request(url, (error, response, body) => {
         console.log(character);
       });
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error(error);
     });
 });
