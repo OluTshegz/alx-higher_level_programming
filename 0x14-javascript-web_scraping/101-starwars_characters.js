@@ -23,7 +23,7 @@ request(url, (error, response, body) => {
     return new Promise((resolve, reject) => {
       request(characterUrl, (error, response, body) => {
         if (error) {
-          reject(`Error: ${error}`);
+          reject(error);
           return;
         }
 
