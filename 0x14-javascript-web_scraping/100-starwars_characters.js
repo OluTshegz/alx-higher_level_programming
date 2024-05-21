@@ -8,7 +8,7 @@ if (process.argv.length < 3) {
 }
 
 const movieId = process.argv[2];
-const url = `https://swapi-api.hbtn.io/api/films/${movieId}/`;// https://swapi-api.alx-tools.com/api/films/${movieId}/
+const url = `https://swapi-api.hbtn.io/api/films/${movieId}/`; // https://swapi-api.alx-tools.com/api/films/${movieId}/
 
 request(url, (error, response, body) => {
   if (error) {
@@ -19,7 +19,7 @@ request(url, (error, response, body) => {
   const movie = JSON.parse(body);
   const characters = movie.characters;
 
-  for (const characterUrl of characters) {// characters.forEach((characterUrl) => {}
+  for (const characterUrl of characters) { // characters.forEach((characterUrl) => {}
     request(characterUrl, (error, response, body) => {
       if (error) {
         console.error(`Error: ${error}`);
