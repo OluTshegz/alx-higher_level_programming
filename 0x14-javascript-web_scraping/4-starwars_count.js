@@ -25,10 +25,12 @@ const fetchFilms = (url) => {
     }
 
     const data = JSON.parse(body);
-    data.results.forEach(film => {
-      if (film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)) {
-        count++;
-      }
+    data.results.forEach((film) => {
+      film.characters.forEach((character) => {
+        if (character.includes(characterId)) {
+          count += 1;
+        }
+      });
     });
 
     if (data.next) {
