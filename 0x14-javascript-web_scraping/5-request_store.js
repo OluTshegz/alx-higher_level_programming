@@ -19,7 +19,7 @@ request(url, (error, response, body) => {
 
   fs.writeFile(filePath, body, { encoding: 'utf-8' }, (err) => {
     if (err) {
-      console.error(err);
+      console.log(err);
     } else {
       console.log(`The content of ${url} is saved to ${filePath}`);
     }
